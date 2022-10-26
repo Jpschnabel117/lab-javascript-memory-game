@@ -8,10 +8,11 @@ class MemoryGame {
   }
 
   shuffleCards() {
-    if ((this.cards = undefined)) {
+    if (this.cards === undefined) {
       return undefined;
     }
-    for (let i = this.cards.length; i > 0; i--) {
+    console.log(this.cards);
+    for (let i = this.cards.length - 1; i > 0; i--) {
       let randomIndex = Math.floor(Math.random() * (i + 1));
       [this.cards[randomIndex], this.cards[i]] = [
         this.cards[i],
@@ -19,14 +20,21 @@ class MemoryGame {
       ];
     }
     console.log(this.cards);
-    return this.cards;
   }
-  
+
   checkIfPair(card1, card2) {
-    // ... write your code here
+    this.pairsClicked++;
+    if (card1 === card2) {
+      this.pairsGuessed++;
+      return true;
+    }
+    return false;
   }
 
   checkIfFinished() {
-    // ... write your code here
+    if (this.pairsGuessed >= 8) {
+      return true;
+    }
+    return false;
   }
 }
