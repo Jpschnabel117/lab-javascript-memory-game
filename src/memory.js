@@ -8,24 +8,32 @@ class MemoryGame {
   }
 
   shuffleCards() {
-    if (this.cards === undefined) {
-      return undefined;
-    }
     console.log(this.cards);
-    for (let i = this.cards.length - 1; i > 0; i--) {
-      let randomIndex = Math.floor(Math.random() * (i + 1));
-      [this.cards[randomIndex], this.cards[i]] = [
+    let i = this.cards.length;
+    while (--i > 0) {
+      let randIndex = Math.floor(Math.random() * (i + 1));
+      [this.cards[randIndex], this.cards[i]] = [
         this.cards[i],
-        this.cards[randomIndex],
+        this.cards[randIndex],
       ];
     }
+    // let shuffledCards = [];
+    // let loops = this.cards.length;
+    // for (let index = 0; index < loops; index++) {
+    //   let randIndex = Math.floor(Math.random() * this.cards.length);
+    //   this.cards.splice(randIndex, 1);
+    //   shuffledCards.push(this.cards[randIndex]);
+    // }
+    // this.cards = shuffledCards;
     console.log(this.cards);
   }
 
   checkIfPair(card1, card2) {
     this.pairsClicked++;
+    document.querySelector("#pairs-clicked").textContent = this.pairsClicked;
     if (card1 === card2) {
       this.pairsGuessed++;
+      document.querySelector("#pairs-guessed").textContent = this.pairsGuessed;
       return true;
     }
     return false;
